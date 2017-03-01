@@ -197,15 +197,28 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
   int alpha = ofRandom(90,100);
+    
+    if ( mouseX < ofGetWidth()/2) {
+        ofColor darkorange(255,140,0, alpha);
+        ofColor orangered(255,69,0, alpha);
+        ofColor inbetween = darkorange.getLerped(orangered,ofRandom(1.0));  // linear interpolation between colors color
+        
+        for (int i=0; i < MAX_AGENTS; i++) {
+            ofSetColor(inbetween);
+            Agents[i].draw();
+        }
 
-  ofColor darkorange(255,140,0, alpha);
-  ofColor orangered(255,69,0, alpha);
-  ofColor inbetween = darkorange.getLerped(orangered,ofRandom(1.0));  // linear interpolation between colors color
+        }else{
+
+  ofColor grey(255,150,150, alpha);
+  ofColor blue(0,255,0, alpha);
+  ofColor inbetween1 = grey.getLerped(blue,ofRandom(1.0));  // linear interpolation between colors color
   
   for (int i=0; i < MAX_AGENTS; i++) {
-    ofSetColor(inbetween);
+    ofSetColor(inbetween1);
     Agents[i].draw();
   }
+        }
 }
 
 //--------------------------------------------------------------
